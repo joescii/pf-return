@@ -18,7 +18,8 @@ package object pf {
   object Extractor {
     def apply(f: PartialFunction[String, (FileEntry, Extractor)]):Extractor = new Extractor {
       override def isDefinedAt(x: String): Boolean = f isDefinedAt x
-      override def apply(v1: String): (FileEntry, Extractor) = f(v1)
+      override def apply(v: String): (FileEntry, Extractor) = f(v)
+      override def applyOrElse[A1 <: String, B1 >: (FileEntry, Extractor)](x: A1, default: (A1) ⇒ B1): B1 = f.applyOrElse(x, default)
     }
   }
 
