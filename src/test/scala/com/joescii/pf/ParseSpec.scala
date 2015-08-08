@@ -19,12 +19,13 @@ class ParseSpec extends WordSpec with ShouldMatchers {
         Attribute("language", "scala"),
         ComplexSet("my numbers"),
         Complex(3.14, 0),
-        Complex(42, 8.8)
+        Complex(42, 8.8),
+        Wtf("hey buddy!!")
       )
 
       val actual = parse(file)
 
-      actual.length shouldEqual 6
+      actual.length shouldEqual expected.length
 
       (actual zip expected) foreach { case (a, e) => a shouldEqual e }
     }
